@@ -20,7 +20,20 @@ Transform a feature idea into a fully implemented, tested, documented, and deplo
 
 ## Workflow Duration
 
-**Typical Duration:** 2-6 weeks (depending on feature complexity)
+**AI Agent Processing Time:** 1-3 hours (total sequential execution)  
+**Calendar Time (with reviews & iterations):** 2-5 days
+
+### Understanding Durations
+The durations in this workflow represent **AI agent processing time**, not human work time:
+- **Minutes**: Simple tasks (e.g., creating a user story: 2-5 minutes)
+- **Hours**: Complex tasks (e.g., writing comprehensive tests: 15-30 minutes)
+- **Sequential vs Parallel**: Many tasks can run in parallel to reduce total time
+
+**Note:** The original "2-6 weeks" estimate was based on human team workflows. With AI agents, the same work completes in hours or days, depending on:
+- Feature complexity
+- Number of review iterations required
+- Waiting for human approvals (if any)
+- Parallel vs sequential execution
 
 ## Prerequisites
 
@@ -61,4 +74,3 @@ See [workflow-definition.md](./workflow-definition.md) for step-by-step details.
 - [Agent Sequence](./agent-sequence.md) - Agent collaboration flow
 - [Inputs & Outputs](./inputs-outputs.md) - Data flow
 - [Example](./example.md) - Real execution example
-

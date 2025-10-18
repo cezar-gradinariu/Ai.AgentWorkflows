@@ -1,6 +1,24 @@
 ﻿# Feature Development Workflow - Detailed Definition
 
-## Phase 1: Requirements & Analysis (Days 1-3)
+## Duration Guide for AI Agents
+
+**Understanding AI Agent Time:**
+- AI agents work significantly faster than human teams
+- Times below reflect **actual AI processing time** for tasks
+- **Sequential execution**: Total time if agents work one after another
+- **Parallel execution**: Many tasks can run simultaneously, reducing total time
+- **Iterations**: Review cycles may require multiple passes
+
+**Realistic Timelines:**
+- **Simple feature** (e.g., basic CRUD): 1-2 hours total
+- **Medium feature** (e.g., authentication): 3-6 hours total
+- **Complex feature** (e.g., payment integration): 8-16 hours total
+- **Add**: Review iterations (+30 min to 2 hours per cycle)
+- **Add**: Human approval wait times (variable)
+
+---
+
+## Phase 1: Requirements & Analysis
 
 ### Step 1.1: Product Owner Defines Requirements
 **Agent:** Product Owner  
@@ -13,7 +31,7 @@
 
 **Output:** Requirements document, user stories
 
-**Duration:** 4-8 hours
+**AI Processing Time:** 5-15 minutes
 
 ---
 
@@ -29,13 +47,13 @@
 
 **Output:** Functional specification, use cases
 
-**Duration:** 1-2 days
+**AI Processing Time:** 15-30 minutes
 
 **Approval Required:** Product Owner must approve specification
 
 ---
 
-## Phase 2: Design (Days 4-7)
+## Phase 2: Design
 
 ### Step 2.1: Architect Designs Technical Solution
 **Agent:** Architect  
@@ -49,7 +67,7 @@
 
 **Output:** Technical design document, architecture diagrams, ADRs
 
-**Duration:** 2-3 days
+**AI Processing Time:** 20-45 minutes
 
 ---
 
@@ -64,13 +82,13 @@
 
 **Output:** Design review report, approval/rejection
 
-**Duration:** 4-8 hours
+**AI Processing Time:** 10-15 minutes
 
 **Decision Point:** If rejected, return to Step 2.1
 
 ---
 
-## Phase 3: Development (Days 8-15)
+## Phase 3: Development
 
 ### Step 3.1: Coder Implements Feature
 **Agent:** Coder  
@@ -84,7 +102,7 @@
 
 **Output:** Source code, unit tests
 
-**Duration:** 5-8 days (varies by complexity)
+**AI Processing Time:** 30 minutes - 3 hours (varies by complexity)
 
 ---
 
@@ -100,11 +118,11 @@
 
 **Output:** Code ready for review
 
-**Duration:** 2-4 hours
+**AI Processing Time:** 5-10 minutes
 
 ---
 
-## Phase 4: Code Review (Days 16-17)
+## Phase 4: Code Review
 
 ### Step 4.1: Reviewer Reviews Code
 **Agent:** Reviewer  
@@ -119,7 +137,7 @@
 
 **Output:** Code review report, approval/rejection
 
-**Duration:** 2-4 hours
+**AI Processing Time:** 10-20 minutes
 
 **Decision Point:** If rejected, return to Step 3.1
 
@@ -136,13 +154,13 @@
 
 **Output:** Updated code
 
-**Duration:** 2-8 hours
+**AI Processing Time:** 10-30 minutes
 
-**Loop:** Repeat Steps 4.1-4.2 until approved
+**Loop:** Repeat Steps 4.1-4.2 until approved (typically 1-2 iterations)
 
 ---
 
-## Phase 5: Testing (Days 18-22)
+## Phase 5: Testing
 
 ### Step 5.1: QA Creates Test Plan
 **Agent:** QA  
@@ -155,7 +173,7 @@
 
 **Output:** Test plan, test cases
 
-**Duration:** 1 day
+**AI Processing Time:** 15-30 minutes
 
 ---
 
@@ -172,7 +190,7 @@
 
 **Output:** Test results, bug reports
 
-**Duration:** 2-3 days
+**AI Processing Time:** 30-60 minutes (automated testing)
 
 ---
 
@@ -186,13 +204,13 @@
 
 **Output:** Bug fixes, verification reports
 
-**Duration:** 1-3 days
+**AI Processing Time:** 15-45 minutes per bug cycle
 
-**Loop:** Repeat until all critical/high bugs fixed
+**Loop:** Repeat until all critical/high bugs fixed (typically 0-2 cycles)
 
 ---
 
-## Phase 6: Documentation (Days 23-25)
+## Phase 6: Documentation
 
 ### Step 6.1: Technical Writer Creates Documentation
 **Agent:** Technical Writer  
@@ -206,7 +224,7 @@
 
 **Output:** User documentation, API docs, release notes
 
-**Duration:** 2-3 days
+**AI Processing Time:** 20-45 minutes
 
 ---
 
@@ -221,11 +239,11 @@
 
 **Output:** Approved documentation
 
-**Duration:** 4 hours
+**AI Processing Time:** 10-15 minutes
 
 ---
 
-## Phase 7: Validation & Approval (Days 26-28)
+## Phase 7: Validation & Approval
 
 ### Step 7.1: Product Owner Validates Feature
 **Agent:** Product Owner  
@@ -239,7 +257,7 @@
 
 **Output:** Validation report, approval/rejection
 
-**Duration:** 4-8 hours
+**AI Processing Time:** 10-20 minutes
 
 **Decision Point:** If rejected, identify issues and loop back
 
@@ -256,11 +274,13 @@
 
 **Output:** Signed approval, deployment plan
 
-**Duration:** 2-4 hours
+**AI Processing Time:** 5-10 minutes (AI preparation; human approval time varies)
+
+**Note:** This may include waiting for human stakeholder availability
 
 ---
 
-## Phase 8: Deployment (Day 29-30)
+## Phase 8: Deployment
 
 ### Step 8.1: Deploy to Production
 **Agent:** Coder (with DevOps)  
@@ -274,7 +294,7 @@
 
 **Output:** Feature live in production
 
-**Duration:** 2-4 hours
+**AI Processing Time:** 10-20 minutes (excluding infrastructure provisioning)
 
 ---
 
@@ -289,13 +309,29 @@
 
 **Output:** Monitoring report
 
-**Duration:** 24-48 hours ongoing
+**AI Processing Time:** 15-30 minutes initial, then ongoing
 
 ---
 
 ## Workflow Complete! 🎉
 
-**Total Duration:** 4-6 weeks
+### Total Duration Summary
+
+**Pure AI Processing Time (Sequential):**
+- Minimum: 3.5 hours (simple feature, no issues)
+- Typical: 5-8 hours (medium feature, 1-2 review cycles)
+- Maximum: 12-16 hours (complex feature, multiple iterations)
+
+**Calendar Time (Including Iterations & Waits):**
+- With human approvals: Add 1-3 days for stakeholder reviews
+- With CI/CD pipelines: Add 30-60 minutes for automated deployments
+- With review iterations: Add 1-3 hours per cycle
+
+**Parallelization Opportunities:**
+- Documentation can start while testing is in progress
+- Multiple test suites can run simultaneously
+- Design review can happen while BA finalizes specs
+- **Potential time savings: 30-40% with parallel execution**
 
 ## Error Handling
 
@@ -334,4 +370,3 @@ These can happen in parallel:
 - Test coverage achieved
 - Documentation completeness
 - Stakeholder satisfaction
-
