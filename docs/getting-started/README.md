@@ -1,330 +1,509 @@
 ﻿# Getting Started with AI Agent Workflows
 
-Welcome! This guide will help you understand and start using the AI Agent Workflows system.
+## Introduction
 
-## What is This?
+This guide will walk you through **executing your first workflow** using the AI Agent Workflow system. By the end, you'll understand how to orchestrate multiple AI agents to deliver a complete feature.
 
-This is a comprehensive framework for orchestrating multiple AI agents to collaborate on software development projects. Think of it as a structured way to have specialized AI agents work together, each handling their area of expertise.
+## Prerequisites
 
-## Quick Overview
+Before starting, you need:
+- ✅ Access to an AI system (ChatGPT, Claude, etc.)
+- ✅ Basic understanding of software development
+- ✅ A feature or task you want to complete
+- ✅ (Optional) API access for automation
 
-### The Agents (Your Team)
+## Understanding the Basics
 
-You have 7 specialized agents:
+### What Are AI Agents?
 
-1. **Product Owner** - Defines what to build and why
-2. **Business Analyst** - Analyzes requirements in detail
-3. **Architect** - Designs the technical solution
-4. **Coder** - Writes the actual code
-5. **Reviewer** - Reviews code for quality
-6. **QA** - Tests everything thoroughly
-7. **Technical Writer** - Creates documentation
+In this system, an **AI agent** is a specialized role with:
+- **Specific responsibilities** (e.g., Coder writes code, QA tests)
+- **Clear rules** (e.g., Coder must achieve 80% test coverage)
+- **Defined inputs and outputs** (e.g., Architect receives requirements, outputs designs)
+- **Quality standards** (e.g., Reviewer checks security)
 
-### The Workflows (How They Work Together)
+### How Do Agents Work?
 
-Workflows orchestrate agents to complete complex tasks:
-
-- **Feature Development** - Full lifecycle from idea to production
-- **Bug Fix** - Quick issue resolution
-- **Architecture Review** - Design validation
-- **Documentation** - Comprehensive docs creation
-
-### The Features (What Gets Built)
-
-Features move through stages:
-- **Backlog** → **In Progress** → **Completed**
-
-## Your First Steps
-
-### 1. Explore the Agents (5 minutes)
-
-Navigate to `agents/` and read about each agent:
-- What they do
-- Their rules and constraints
-- What tasks they can handle
-- See real examples
-
-**Start here:** `agents/README.md`
-
-### 2. Understand a Workflow (10 minutes)
-
-Look at the Feature Development Workflow:
-- See how agents collaborate
-- Understand the phases
-- Review the detailed steps
-
-**Start here:** `workflows/feature-development/README.md`
-
-### 3. Create Your First Feature (15 minutes)
-
-1. Copy the feature template:
-   ```
-   templates/features/feature-template.md
-   ```
-
-2. Fill it in with your feature idea
-
-3. Save it in:
-   ```
-   features/backlog/FEATURE-XXX-your-feature.md
-   ```
-
-4. Assign it to a workflow
-
-### 4. See a Real Example (5 minutes)
-
-Check out the example feature in progress:
-```
-features/in-progress/FEATURE-001-user-authentication.md
-```
-
-This shows a real feature moving through the workflow.
-
-## Key Concepts
-
-### Agent Rules
-Each agent has rules they must follow. Think of these as:
-- **Responsibilities** - What they're supposed to do
-- **Constraints** - What they can't do
-- **Standards** - Quality levels they must meet
-
-### Workflows
-Workflows define:
-- **Steps** - What happens when
-- **Handoffs** - How agents pass work
-- **Decision Points** - Where approvals are needed
-
-### Features
-Features are work items that:
-- Have clear objectives
-- Move through stages
-- Track progress
-- Maintain history
-
-## Common Use Cases
-
-### Use Case 1: Building a New Feature
-1. Product Owner creates feature in backlog
-2. Assign to "Feature Development Workflow"
-3. Workflow orchestrates all agents
-4. Feature moves through stages
-5. Ends with deployed, tested, documented feature
-
-### Use Case 2: Fixing a Bug
-1. QA reports bug
-2. Assign to "Bug Fix Workflow"
-3. Coder fixes, Reviewer reviews, QA verifies
-4. Bug closed
-
-### Use Case 3: Architectural Decision
-1. Architect proposes design
-2. Assign to "Architecture Review Workflow"
-3. Review, discussion, decision
-4. ADR (Architecture Decision Record) created
-
-## Directory Structure Quick Reference
+You instruct your AI to "act as" a specific agent by giving it the agent's context:
 
 ```
-Ai.AgentWorkflows/
-├── agents/           # 7 agent definitions with rules
-├── workflows/        # 4 workflow types
-├── features/         # Your work items
-│   ├── backlog/      # Planned features
-│   ├── in-progress/  # Active features
-│   └── completed/    # Done features
-├── templates/        # Reusable templates
-├── rules/            # Global policies
-└── docs/             # Additional documentation
+"Act as the [Agent Name] agent from the AI Agent Workflow system.
+
+Your role: [brief role description]
+Your rules: [key rules]
+
+Task: [specific task]
+Input: [input data]
+
+Produce: [expected output]"
 ```
 
-## Best Practices
+## Execution Method 1: Manual Step-by-Step (Recommended for Learning)
 
-### ✅ Do This
+This is the simplest way to start. You manually guide your AI through each workflow step.
 
-1. **Start Small**
-   - Begin with one feature
-   - Use the templates
-   - Follow the workflow
+### Step-by-Step Example: Creating a Simple Feature
 
-2. **Document Everything**
-   - Use markdown files
-   - Keep history
-   - Link related items
-
-3. **Follow the Rules**
-   - Each agent has constraints
-   - Workflows have checkpoints
-   - Quality standards matter
-
-4. **Communicate Clearly**
-   - Explicit handoffs
-   - Status updates
-   - Document decisions
-
-### ❌ Avoid This
-
-1. **Don't Skip Steps**
-   - Each step has a purpose
-   - Shortcuts create problems
-   - Quality suffers
-
-2. **Don't Work in Silos**
-   - Agents must collaborate
-   - Communication is key
-   - Handoffs matter
-
-3. **Don't Ignore Rules**
-   - Rules prevent issues
-   - Standards ensure quality
-   - Constraints protect integrity
-
-## Next Steps
-
-### Learn More
-
-1. **Deep Dive on Agents**
-   - Read each agent's full documentation
-   - Study their task types
-   - Review examples
-
-2. **Study Workflows**
-   - Understand each workflow
-   - See how agents interact
-   - Learn the decision points
-
-3. **Practice**
-   - Create a test feature
-   - Run through a workflow
-   - Document your experience
-
-### Customize
-
-1. **Add Your Own Agents**
-   - Use the agent template
-   - Define rules and tasks
-   - Integrate into workflows
-
-2. **Create Custom Workflows**
-   - Use the workflow template
-   - Define your process
-   - Test and iterate
-
-3. **Adapt to Your Needs**
-   - Modify templates
-   - Adjust rules
-   - Create new patterns
-
-## Getting Help
-
-### Documentation
-
-- Agent guides: `agents/{agent-name}/README.md`
-- Workflow guides: `workflows/{workflow-name}/README.md`
-- Templates: `templates/README.md`
-- Rules: `rules/README.md`
-
-### Examples
-
-Every agent and workflow includes real examples showing:
-- Input format
-- Process
-- Output format
-- Common scenarios
-
-## FAQs
-
-**Q: Do I need all 7 agents?**  
-A: Start with the ones you need. The system is flexible.
-
-**Q: Can I modify the workflows?**  
-A: Yes! Workflows are templates. Adapt to your needs.
-
-**Q: How do I track progress?**  
-A: Feature files include progress tracking and history.
-
-**Q: What if agents disagree?**  
-A: See `rules/collaboration-rules.md` for conflict resolution.
-
-**Q: Can I add new agents?**  
-A: Absolutely! Use the agent template to create new roles.
-
-## Success Metrics
-
-You're successful when:
-- ✅ Features move smoothly through workflows
-- ✅ Agent collaboration is clear and documented
-- ✅ Quality standards are consistently met
-- ✅ Work is transparent and trackable
-- ✅ Team understands the process
-
-## Ready to Start?
-
-1. Pick a feature to build
-2. Copy the feature template
-3. Fill it in
-4. Assign to a workflow
-5. Let the agents collaborate!
-
-**Remember:** This is a framework. Adapt it to your needs while maintaining the core principles of specialization, collaboration, and quality.
+Let's build a "User Profile View" feature from start to finish.
 
 ---
 
-**Need help?** Review the detailed documentation in each section.
+#### **Phase 1: Requirements (5-15 minutes)**
 
-**Want to contribute?** See how to extend and customize the system.
+**Step 1.1: Product Owner Defines Requirements**
 
-**Have feedback?** Document it and share with your team!
-# Workflows
+**Prompt to AI:**
+```
+Act as the Product Owner agent from the AI Agent Workflow system.
 
-Workflows define how multiple agents collaborate to accomplish complex tasks. Each workflow orchestrates a sequence of agent activities to deliver complete features or handle specific scenarios.
+Your responsibilities:
+- Define clear requirements
+- Create user stories with acceptance criteria
+- Set priorities
 
-## Available Workflows
+Task: Define requirements for a "User Profile View" feature
 
-| Workflow | Purpose | Agents Involved | Duration |
-|----------|---------|-----------------|----------|
-| [Feature Development](./feature-development/README.md) | Complete feature lifecycle from concept to deployment | All agents | 2-6 weeks |
-| [Bug Fix](./bug-fix/README.md) | Identify, fix, and verify bugs | Coder, Reviewer, QA, Product Owner | 1-5 days |
-| [Architecture Review](./architecture-review/README.md) | Review and approve architectural changes | Architect, Reviewer, Product Owner | 2-5 days |
-| [Documentation](./documentation/README.md) | Create comprehensive documentation | Technical Writer, Coder, Product Owner, QA | 3-10 days |
+Feature concept:
+- Users should be able to view their profile information
+- Profile includes: name, email, profile picture, bio
+- Users can navigate to this page from the main menu
 
-## Workflow Structure
+Please create:
+1. User story in "As a... I want... So that..." format
+2. Acceptance criteria (specific and testable)
+3. Priority level
+4. Success metrics
+```
 
-Each workflow directory contains:
-- `README.md` - Workflow overview and purpose
-- `workflow-definition.md` - Detailed workflow steps
-- `agent-sequence.md` - Order of agent involvement
-- `inputs-outputs.md` - Required inputs and expected outputs
-- `example.md` - Real-world workflow execution example
+**Expected Output:**
+- User story document
+- Acceptance criteria list
+- Priority assignment
 
-## Workflow States
+**Save this output** - you'll need it for the next step.
 
-All workflows follow these states:
-1. **Initiated** - Workflow started with input
-2. **In Progress** - Agents actively working
-3. **Blocked** - Waiting for input or dependency
-4. **Review** - Pending approval or validation
-5. **Completed** - Successfully finished
-6. **Failed** - Encountered unrecoverable error
-7. **Cancelled** - Manually cancelled
+---
 
-## Creating Custom Workflows
+**Step 1.2: Business Analyst Analyzes Requirements**
 
-To create a new workflow:
-1. Copy a template from `../templates/workflows/`
-2. Define the workflow steps
-3. Specify agent involvement
-4. Define success criteria
-5. Document inputs and outputs
-6. Create example execution
-7. Test with real scenarios
+**Prompt to AI:**
+```
+Act as the Business Analyst agent from the AI Agent Workflow system.
 
-## Workflow Best Practices
+Your responsibilities:
+- Analyze requirements in detail
+- Create functional specifications
+- Document business rules
+- Create use cases
 
-- Keep workflows focused on specific outcomes
-- Define clear entry and exit criteria
-- Make agent handoffs explicit
-- Include error handling paths
-- Document decision points
-- Version control workflow definitions
-- Review and optimize regularly
+Task: Analyze the requirements for the User Profile View feature
 
+Input (from Product Owner):
+[PASTE THE USER STORY AND ACCEPTANCE CRITERIA FROM STEP 1.1]
+
+Please create:
+1. Functional specification
+2. Use case with main flow and alternative flows
+3. Business rules
+4. Data requirements
+```
+
+**Expected Output:**
+- Functional specification
+- Detailed use case
+- Business rules
+
+**Save this output** - needed for design phase.
+
+---
+
+#### **Phase 2: Design (20-45 minutes)**
+
+**Step 2.1: Architect Designs Solution**
+
+**Prompt to AI:**
+```
+Act as the Architect agent from the AI Agent Workflow system.
+
+Your responsibilities:
+- Design technical solutions
+- Define API contracts
+- Create architecture diagrams
+- Make technology decisions
+
+Task: Design the technical solution for the User Profile View feature
+
+Context: [Specify your tech stack, e.g., "React frontend, Node.js backend, PostgreSQL database"]
+
+Input (from Business Analyst):
+[PASTE THE FUNCTIONAL SPECIFICATION FROM STEP 1.2]
+
+Please create:
+1. High-level architecture (components and interactions)
+2. API contract (endpoints, request/response format)
+3. Database schema (if needed)
+4. Technology recommendations
+5. Security considerations
+```
+
+**Expected Output:**
+- Architecture design
+- API specifications
+- Database schema
+- Technical decisions
+
+**Save this output** - Coder needs this.
+
+---
+
+#### **Phase 3: Development (30 minutes - 3 hours)**
+
+**Step 3.1: Coder Implements Feature**
+
+**Prompt to AI:**
+```
+Act as the Coder agent from the AI Agent Workflow system.
+
+Your responsibilities:
+- Implement features following SOLID principles
+- Write unit tests with 80%+ coverage
+- Follow coding standards
+- Document code
+
+Task: Implement the User Profile View feature
+
+Technology: [Your tech stack, e.g., "React with TypeScript"]
+
+Input (from Architect):
+[PASTE THE TECHNICAL DESIGN FROM STEP 2.1]
+
+Please create:
+1. Production code (well-structured and documented)
+2. Unit tests (minimum 80% coverage)
+3. Code comments for complex logic
+4. Instructions for running tests
+
+Follow these rules:
+- Use SOLID principles
+- Maximum method length: 50 lines
+- Handle errors properly
+- No hard-coded values
+```
+
+**Expected Output:**
+- Source code files
+- Unit test files
+- Coverage report
+- Setup instructions
+
+**Important:** You may need to copy this code into your actual project and run the tests.
+
+---
+
+#### **Phase 4: Code Review (10-20 minutes)**
+
+**Step 4.1: Reviewer Reviews Code**
+
+**Prompt to AI:**
+```
+Act as the Reviewer agent from the AI Agent Workflow system.
+
+Your responsibilities:
+- Review code quality and standards
+- Check test coverage (minimum 80%)
+- Identify security issues
+- Verify SOLID principles
+
+Task: Review the User Profile View implementation
+
+Input (from Coder):
+[PASTE THE CODE AND TEST FILES FROM STEP 3.1]
+
+Review checklist:
+- Code follows style guide
+- SOLID principles applied
+- Test coverage ≥ 80%
+- Security best practices
+- No code smells
+- Proper error handling
+- Documentation complete
+
+Provide:
+1. Overall assessment (Approve/Request Changes/Reject)
+2. Critical issues (must fix)
+3. High priority feedback (should fix)
+4. Suggestions (nice to have)
+```
+
+**Expected Output:**
+- Review report
+- Approval or list of required changes
+
+**If changes requested:** Go back to Step 3.1 with the feedback.
+
+---
+
+#### **Phase 5: Testing (45-90 minutes)**
+
+**Step 5.1: QA Creates Test Plan**
+
+**Prompt to AI:**
+```
+Act as the QA agent from the AI Agent Workflow system.
+
+Your responsibilities:
+- Create comprehensive test plans
+- Design test cases
+- Execute tests
+- Report bugs
+
+Task: Create a test plan for the User Profile View feature
+
+Input:
+[PASTE REQUIREMENTS FROM STEP 1.1 AND CODE FROM STEP 3.1]
+
+Please create:
+1. Test strategy (what types of testing)
+2. Test cases covering all acceptance criteria
+3. Test data requirements
+4. Expected results for each test case
+5. Edge cases and error scenarios
+```
+
+**Expected Output:**
+- Test plan
+- Test cases
+- Test data needs
+
+---
+
+**Step 5.2: QA Executes Tests**
+
+**Prompt to AI:**
+```
+Act as the QA agent executing tests.
+
+Task: Simulate test execution for the User Profile View feature
+
+Test cases:
+[PASTE TEST CASES FROM STEP 5.1]
+
+Implemented code:
+[PASTE CODE FROM STEP 3.1]
+
+Please:
+1. Walk through each test case
+2. Identify any issues or gaps in the implementation
+3. Report any bugs found
+4. Verify coverage of acceptance criteria
+```
+
+**Expected Output:**
+- Test results
+- Bug reports (if any)
+- Coverage analysis
+
+**If bugs found:** Go back to Step 3.1 for fixes.
+
+---
+
+#### **Phase 6: Documentation (20-45 minutes)**
+
+**Step 6.1: Technical Writer Creates Documentation**
+
+**Prompt to AI:**
+```
+Act as the Technical Writer agent from the AI Agent Workflow system.
+
+Your responsibilities:
+- Create clear, user-friendly documentation
+- Write at 8th-grade reading level
+- Include examples and screenshots
+- Follow WCAG 2.1 AA accessibility standards
+
+Task: Create user documentation for the User Profile View feature
+
+Input:
+Feature: [PASTE REQUIREMENTS FROM STEP 1.1]
+Implementation: [PASTE RELEVANT CODE/API FROM STEP 3.1]
+
+Please create:
+1. User guide (how to view profile)
+2. API documentation (if applicable)
+3. Troubleshooting section
+4. FAQs
+
+Format: Markdown
+```
+
+**Expected Output:**
+- User documentation
+- API reference
+- Troubleshooting guide
+
+---
+
+#### **Phase 7: Validation (10-20 minutes)**
+
+**Step 7.1: Product Owner Validates**
+
+**Prompt to AI:**
+```
+Act as the Product Owner agent validating the completed feature.
+
+Task: Validate the User Profile View feature against original requirements
+
+Original requirements:
+[PASTE FROM STEP 1.1]
+
+Completed implementation:
+- Code: [SUMMARY FROM STEP 3.1]
+- Test results: [SUMMARY FROM STEP 5.2]
+- Documentation: [SUMMARY FROM STEP 6.1]
+
+Please:
+1. Verify each acceptance criterion is met
+2. Check if business value is delivered
+3. Identify any gaps
+4. Make approval decision (Approve/Request Changes/Reject)
+```
+
+**Expected Output:**
+- Validation report
+- Approval decision
+
+---
+
+### **Workflow Complete! 🎉**
+
+You've now orchestrated 7 different AI agents to:
+- ✅ Define requirements
+- ✅ Analyze business needs
+- ✅ Design architecture
+- ✅ Write code with tests
+- ✅ Review quality
+- ✅ Test thoroughly
+- ✅ Create documentation
+- ✅ Validate completion
+
+**Total time:** Approximately 2-5 hours
+
+---
+
+## Execution Method 2: Automation with Scripts
+
+For repeated workflows, you can automate the process.
+
+### Using Python Example
+
+```python
+import openai  # or anthropic for Claude
+
+# Load agent definitions
+agents = {
+    "product_owner": load_agent_context("agents/product-owner/"),
+    "architect": load_agent_context("agents/architect/"),
+    # ... etc
+}
+
+# Execute workflow
+def execute_feature_workflow(feature_concept):
+    # Step 1: Product Owner
+    requirements = call_ai(
+        context=agents["product_owner"],
+        task=f"Define requirements for: {feature_concept}"
+    )
+    
+    # Step 2: Business Analyst
+    specification = call_ai(
+        context=agents["business_analyst"],
+        task=f"Analyze these requirements: {requirements}"
+    )
+    
+    # Step 3: Architect
+    design = call_ai(
+        context=agents["architect"],
+        task=f"Design solution for: {specification}"
+    )
+    
+    # ... continue through workflow
+    
+    return {
+        "requirements": requirements,
+        "design": design,
+        # ... etc
+    }
+
+# Run it
+result = execute_feature_workflow("User Profile View")
+```
+
+[See full automation examples in `/examples/automation/`]
+
+---
+
+## Execution Method 3: Workflow Orchestration Tools
+
+Use tools like n8n, Make.com, or Zapier to visually orchestrate agents.
+
+### Example with n8n:
+
+1. **Create nodes** for each workflow step
+2. **Configure AI calls** with agent contexts
+3. **Pass data** between nodes
+4. **Add decision nodes** for approvals
+5. **Set up loops** for review cycles
+
+[See detailed n8n workflow example in `/examples/n8n/`]
+
+---
+
+## Tips for Success
+
+### 1. Save Intermediate Outputs
+Always save the output from each step - you'll need it for the next agent.
+
+### 2. Provide Complete Context
+When passing data to the next agent, include ALL relevant information.
+
+### 3. Don't Skip Steps
+Each step has a purpose. Skipping steps leads to lower quality.
+
+### 4. Iterate When Needed
+If a review fails, don't force approval. Loop back and fix issues.
+
+### 5. Customize Agent Prompts
+Adapt the prompts to your specific technology stack and requirements.
+
+### 6. Track Your Progress
+Keep a checklist of completed phases and pending approvals.
+
+## Common Issues & Solutions
+
+| Issue | Solution |
+|-------|----------|
+| AI not following agent rules | Include more specific rules in your prompt |
+| Output too generic | Provide more context and specific requirements |
+| Skipping quality checks | Explicitly ask for checklist validation |
+| Inconsistent format | Specify exact output format needed |
+| Missing details | Ask follow-up questions before moving to next step |
+
+## Next Steps
+
+Now that you understand execution:
+
+1. ✅ Try the example workflow above with a simple feature
+2. ✅ Review agent-specific examples in `/agents/*/examples.md`
+3. ✅ Customize prompts for your tech stack
+4. ✅ Set up automation scripts for repeated workflows
+5. ✅ Integrate with your CI/CD pipeline
+
+## Need Help?
+
+- **Workflow questions:** See [/workflows/README.md](../../workflows/README.md)
+- **Agent questions:** See [/agents/README.md](../../agents/README.md)
+- **Collaboration issues:** See [/rules/collaboration-rules.md](../../rules/collaboration-rules.md)
+
+---
+
+**Ready to build your first feature?** Start with Phase 1 above! 🚀
