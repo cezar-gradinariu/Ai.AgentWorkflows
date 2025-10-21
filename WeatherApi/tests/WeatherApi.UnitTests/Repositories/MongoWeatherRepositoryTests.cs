@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using Moq;
 using WeatherApi.Domain.Entities;
@@ -18,13 +19,14 @@ public class MongoWeatherRepositoryTests
         var mockDatabase = new Mock<IMongoDatabase>();
         var mockCollection = new Mock<IMongoCollection<WeatherDataPoint>>();
         var mockIndexManager = new Mock<IMongoIndexManager<WeatherDataPoint>>();
+        var mockLogger = new Mock<ILogger<MongoWeatherRepository>>();
 
         mockDatabase.Setup(d => d.GetCollection<WeatherDataPoint>("weatherdatapoints", null))
             .Returns(mockCollection.Object);
         mockCollection.Setup(c => c.Indexes).Returns(mockIndexManager.Object);
 
         // Act
-        var repository = new MongoWeatherRepository(mockDatabase.Object);
+        var repository = new MongoWeatherRepository(mockDatabase.Object, mockLogger.Object);
 
         // Assert
         mockIndexManager.Verify(im => im.CreateOneAsync(

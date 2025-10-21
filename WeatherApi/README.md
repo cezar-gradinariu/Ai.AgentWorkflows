@@ -11,7 +11,7 @@ WeatherApi/
 ├── WeatherApi.sln
 ├── src/
 │   ├── WeatherApi.Domain/           # Domain entities and repository interfaces
-│   ├── WeatherApi.Application/      # Business logic, CQRS handlers, DTOs, validators
+��   ├── WeatherApi.Application/      # Business logic, CQRS handlers, DTOs, validators
 │   ├── WeatherApi.Infrastructure/   # MongoDB repository implementation
 │   └── WeatherApi.Api/              # ASP.NET Core Web API, controllers, middleware
 └── tests/
@@ -103,14 +103,45 @@ curl -X POST "https://localhost:5001/api/weather/bulk" \
   "MongoDB": {
     "DatabaseName": "weatherdb"
   },
-  "ApiKey": "your-api-key-here-change-in-production"
+  "ApiKey": "DEV-KEY-ONLY-DO-NOT-USE-IN-PRODUCTION"
 }
 ```
 
 ### Environment Variables (Production)
+
+⚠️ **IMPORTANT:** Never commit production API keys to source control!
+
+For production deployment, override the following settings using environment variables:
+
+**Required Environment Variables:**
 - `ConnectionStrings__MongoDB`: MongoDB connection string
 - `MongoDB__DatabaseName`: Database name
-- `ApiKey`: API key for POST endpoint authentication
+- `ApiKey`: Production API key for POST endpoint authentication
+
+**Example (Linux/Mac):**
+```bash
+export ConnectionStrings__MongoDB="mongodb://prod-server:27017"
+export MongoDB__DatabaseName="weatherdb-prod"
+export ApiKey="your-secure-production-api-key-here"
+```
+
+**Example (Windows):**
+```cmd
+set ConnectionStrings__MongoDB=mongodb://prod-server:27017
+set MongoDB__DatabaseName=weatherdb-prod
+set ApiKey=your-secure-production-api-key-here
+```
+
+**Example (Docker):**
+```yaml
+environment:
+  - ConnectionStrings__MongoDB=mongodb://mongo:27017
+  - MongoDB__DatabaseName=weatherdb
+  - ApiKey=${API_KEY}
+```
+
+**Example (Azure App Service):**
+Use Application Settings in the Azure Portal to set configuration values.
 
 ## Running the Application
 
@@ -237,4 +268,3 @@ Follow the coding standards defined in `/agents/coder/rules.md`:
 ## Contact
 
 [Your Contact Information]
-

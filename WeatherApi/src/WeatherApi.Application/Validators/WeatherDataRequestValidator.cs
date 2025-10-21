@@ -8,33 +8,41 @@ namespace WeatherApi.Application.Validators;
 /// </summary>
 public class WeatherDataRequestValidator : AbstractValidator<WeatherDataRequest>
 {
+    // Validation constants (fixes MINOR-001)
+    private const double MinTemperature = -100;
+    private const double MaxTemperature = 60;
+    private const double MinHumidity = 0;
+    private const double MaxHumidity = 100;
+    private const double MinWindSpeed = 0;
+    private const int MaxCityNameLength = 100;
+    private const int MaxConditionLength = 200;
+
     public WeatherDataRequestValidator()
     {
         RuleFor(x => x.City)
             .NotEmpty()
             .WithMessage("City name is required")
-            .MaximumLength(100)
-            .WithMessage("City name cannot exceed 100 characters");
+            .MaximumLength(MaxCityNameLength)
+            .WithMessage($"City name cannot exceed {MaxCityNameLength} characters");
 
         RuleFor(x => x.Timestamp)
             .NotEmpty()
             .WithMessage("Timestamp is required");
 
         RuleFor(x => x.Temperature)
-            .InclusiveBetween(-100, 60)
-            .WithMessage("Temperature must be between -100°C and 60°C");
+            .InclusiveBetween(MinTemperature, MaxTemperature)
+            .WithMessage($"Temperature must be between {MinTemperature}°C and {MaxTemperature}°C");
 
         RuleFor(x => x.Humidity)
-            .InclusiveBetween(0, 100)
-            .WithMessage("Humidity must be between 0% and 100%");
+            .InclusiveBetween(MinHumidity, MaxHumidity)
+            .WithMessage($"Humidity must be between {MinHumidity}% and {MaxHumidity}%");
 
         RuleFor(x => x.WindSpeed)
-            .GreaterThanOrEqualTo(0)
+            .GreaterThanOrEqualTo(MinWindSpeed)
             .WithMessage("Wind speed cannot be negative");
 
         RuleFor(x => x.Condition)
-            .MaximumLength(200)
-            .WithMessage("Condition description cannot exceed 200 characters");
+            .MaximumLength(MaxConditionLength)
+            .WithMessage($"Condition description cannot exceed {MaxConditionLength} characters");
     }
 }
-

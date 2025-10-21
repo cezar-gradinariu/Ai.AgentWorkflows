@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using WeatherApi.Application.Commands;
 using WeatherApi.Application.DTOs;
@@ -38,11 +39,25 @@ public class WeatherController : ControllerBase
     /// <returns>List of weather data points.</returns>
     [HttpGet("{city}")]
     [ProducesResponseType(typeof(List<WeatherDataResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<List<WeatherDataResponse>>> GetWeather(
         string city, 
         [FromQuery] int days = 5)
     {
-        var query = new GetWeatherQuery { City = city, Days = days };
+        // Validate city parameter (fixes Issue #3)
+        if (string.IsNullOrWhiteSpace(city))
+        {
+            return BadRequest(new { Message = "City parameter is required" });
+        }
+
+        // Sanitize city name to prevent injection (fixes CRITICAL-004)
+        var sanitizedCity = Regex.Replace(city.Trim(), @"[^\w\s-]", "");
+        if (sanitizedCity != city.Trim())
+        {
+            return BadRequest(new { Message = "City name contains invalid characters. Only letters, numbers, spaces, and hyphens are allowed." });
+        }
+
+        var query = new GetWeatherQuery { City = sanitizedCity, Days = days };
         var result = await _queryHandler.HandleAsync(query);
         return Ok(result);
     }
@@ -80,18 +95,39 @@ public class WeatherController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> UpsertBulkWeatherData([FromBody] List<WeatherDataRequest> requests)
     {
-        // Validate all requests
-        foreach (var request in requests)
+        // Validate request is not null (fixes CRITICAL-001)
+        if (requests == null || requests.Count == 0)
         {
-            var validationResult = await _validator.ValidateAsync(request);
-            if (!validationResult.IsValid)
-            {
-                return BadRequest(new 
-                { 
-                    Message = "Validation failed for one or more items",
-                    Errors = validationResult.Errors 
-                });
-            }
+            return BadRequest(new { Message = "Request body cannot be empty" });
+        }
+
+        // Check for null items in the list (fixes CRITICAL-001)
+        if (requests.Any(r => r == null))
+        {
+            return BadRequest(new { Message = "Request contains null items" });
+        }
+
+        if (requests.Count > 1000)
+        {
+            return BadRequest(new { Message = "Maximum 1000 items per bulk request. Please split into smaller batches." });
+        }
+
+        // Validate all requests in parallel for better performance (fixes HIGH-005)
+        var validationTasks = requests.Select(r => _validator.ValidateAsync(r));
+        var validationResults = await Task.WhenAll(validationTasks);
+
+        var errors = validationResults
+            .Where(r => !r.IsValid)
+            .SelectMany(r => r.Errors)
+            .ToList();
+
+        if (errors.Any())
+        {
+            return BadRequest(new 
+            { 
+                Message = "Validation failed for one or more items",
+                Errors = errors.Select(e => new { e.PropertyName, e.ErrorMessage })
+            });
         }
 
         var command = new UpsertBulkWeatherCommand { DataPoints = requests };
@@ -99,4 +135,3 @@ public class WeatherController : ControllerBase
         return NoContent();
     }
 }
-

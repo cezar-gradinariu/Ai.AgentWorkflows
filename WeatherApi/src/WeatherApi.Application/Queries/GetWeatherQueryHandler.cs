@@ -48,9 +48,12 @@ public class GetWeatherQueryHandler
             Condition = w.Condition
         }).ToList();
 
-        _cache.Set(cacheKey, response, _cacheDuration);
+        // Add defensive check before caching (fixes Bug #1)
+        if (response != null && response.Any())
+        {
+            _cache.Set(cacheKey, response, _cacheDuration);
+        }
         
-        return response;
+        return response ?? new List<WeatherDataResponse>();
     }
 }
-

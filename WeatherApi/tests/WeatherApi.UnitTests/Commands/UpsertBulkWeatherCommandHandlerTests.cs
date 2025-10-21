@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Caching.Memory;
 using Moq;
 using WeatherApi.Application.Commands;
 using WeatherApi.Application.DTOs;
@@ -13,12 +14,14 @@ namespace WeatherApi.UnitTests.Commands;
 public class UpsertBulkWeatherCommandHandlerTests
 {
     private readonly Mock<IWeatherRepository> _repositoryMock;
+    private readonly Mock<IMemoryCache> _cacheMock;
     private readonly UpsertBulkWeatherCommandHandler _handler;
 
     public UpsertBulkWeatherCommandHandlerTests()
     {
         _repositoryMock = new Mock<IWeatherRepository>();
-        _handler = new UpsertBulkWeatherCommandHandler(_repositoryMock.Object);
+        _cacheMock = new Mock<IMemoryCache>();
+        _handler = new UpsertBulkWeatherCommandHandler(_repositoryMock.Object, _cacheMock.Object);
     }
 
     [Fact]
