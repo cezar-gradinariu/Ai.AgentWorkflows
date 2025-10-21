@@ -37,44 +37,48 @@
 - ✅ One class per file (except for nested classes)
 - ✅ File name must match the primary class/interface name (e.g., WeatherService.cs contains WeatherService class)
 - ✅ Verify that namespaces match the project structure
+- ✅ Remove all unused `using` statements from every file
 - ❌ Do NOT leave empty or placeholder files in the codebase
 - ❌ Do NOT leave stub classes without implementation
 - ❌ Do NOT put code for multiple unrelated classes in a single file
 - ❌ Do NOT accidentally place code meant for File A into File B
+- ❌ Do NOT leave unused `using` directives in any file
 
-**File Creation Best Practices:**
-1. When creating multiple files, create them ONE AT A TIME
-2. Verify each file's content matches its filename and purpose
-3. Ensure each file has the correct namespace
-4. Double-check that code isn't duplicated or misplaced across files
-5. After file creation, verify each file independently
+**Clean Code Practices:**
+1. After writing code, remove all unused `using` statements
+2. Only include `using` directives that are actually needed by the code
+3. Organize `using` statements (System namespaces first, then external, then project namespaces)
+4. Use IDE features or `dotnet format` to clean up unused imports
 
 **Example - CORRECT:**
-```
-// WeatherService.cs
+```csharp
+using System;
+using WeatherApi.Domain.Entities;
+
 namespace WeatherApi.Application
 {
-    public class WeatherService { ... }
-}
-
-// WeatherRepository.cs
-namespace WeatherApi.Infrastructure
-{
-    public class WeatherRepository { ... }
+    public class WeatherService
+    {
+        // Only the using statements that are actually used
+    }
 }
 ```
 
 **Example - INCORRECT:**
-```
-// WeatherService.cs
+```csharp
+using System;
+using System.Collections.Generic;  // ❌ Not used
+using System.Linq;                  // ❌ Not used
+using Microsoft.Extensions.Logging; // ❌ Not used
+using WeatherApi.Domain.Entities;
+
 namespace WeatherApi.Application
 {
-    public class WeatherService { ... }
-    public class WeatherRepository { ... }  // ❌ WRONG FILE!
+    public class WeatherService
+    {
+        // Multiple unused using statements
+    }
 }
-
-// WeatherRepository.cs
-// ❌ EMPTY FILE!
 ```
 
 **Example Structure:**
@@ -94,7 +98,7 @@ YourProject/
 ## Code Quality Rules
 
 ### Must Follow
-- ✅ Follow SOLID principles
+- ��� Follow SOLID principles
 - ✅ Write self-documenting code with clear naming
 - ✅ Include XML documentation for public APIs
 - ✅ Ensure all code is testable
@@ -118,6 +122,28 @@ YourProject/
 - Integration tests for complex workflows
 - Test edge cases and error conditions
 - Mock external dependencies
+
+### Test Project Dependencies
+- ✅ Use **Moq** to mock interfaces (IMemoryCache, ILogger, etc.)
+- ✅ Reference production projects to access interfaces and DTOs
+- ✅ Only add test-specific packages (xUnit, Moq, FluentAssertions, TestContainers, etc.)
+- ❌ Do NOT add NuGet packages that are already available through project references
+- ❌ Do NOT create real instances of infrastructure components (MemoryCache, DbContext, etc.) - mock them instead
+
+**Example - CORRECT:**
+```csharp
+// Test project references Application project
+// IMemoryCache is available through the reference
+var cacheMock = new Mock<IMemoryCache>();
+var handler = new MyHandler(cacheMock.Object);
+```
+
+**Example - INCORRECT:**
+```csharp
+// Adding Microsoft.Extensions.Caching.Memory to test project
+// Creating real MemoryCache instead of mocking
+var cache = new MemoryCache(new MemoryCacheOptions()); // ❌ WRONG!
+```
 
 ## Performance Rules
 - Consider Big O complexity for algorithms

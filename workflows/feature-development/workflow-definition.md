@@ -82,7 +82,7 @@
 - Follow coding standards
 - Document code
 
-**Output:** Source code, unit tests
+**Output:** Source code, unit tests, integration tests
 
 **Duration:** 5-8 days (varies by complexity)
 
