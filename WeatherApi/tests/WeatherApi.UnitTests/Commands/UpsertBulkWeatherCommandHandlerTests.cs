@@ -3,6 +3,7 @@ using WeatherApi.Application.Commands;
 using WeatherApi.Application.DTOs;
 using WeatherApi.Domain.Entities;
 using WeatherApi.Domain.Repositories;
+using Xunit;
 
 namespace WeatherApi.UnitTests.Commands;
 
@@ -96,4 +97,3 @@ public class UpsertBulkWeatherCommandHandlerTests
             Times.Once);
     }
 }
-

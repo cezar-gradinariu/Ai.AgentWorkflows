@@ -1,4 +1,3 @@
-using FluentAssertions;
 using Moq;
 using WeatherApi.Application.Commands;
 using WeatherApi.Application.DTOs;
@@ -87,4 +86,3 @@ public class UpsertWeatherCommandHandlerTests
             Times.Once);
     }
 }
-

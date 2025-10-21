@@ -1,4 +1,3 @@
-using FluentAssertions;
 using Microsoft.Extensions.Caching.Memory;
 using Moq;
 using WeatherApi.Application.Queries;
@@ -61,10 +60,10 @@ public class GetWeatherQueryHandlerTests
         var result = await _handler.HandleAsync(query);
 
         // Assert
-        result.Should().NotBeNull();
-        result.Should().HaveCount(1);
-        result[0].City.Should().Be(city);
-        result[0].Temperature.Should().Be(20.5);
+        Assert.NotNull(result);
+        Assert.Single(result);
+        Assert.Equal(city, result[0].City);
+        Assert.Equal(20.5, result[0].Temperature);
         _repositoryMock.Verify(r => r.GetWeatherAsync(
             It.IsAny<string>(),
             It.IsAny<DateTime>(),
@@ -100,9 +99,9 @@ public class GetWeatherQueryHandlerTests
         var result = await _handler.HandleAsync(query);
 
         // Assert
-        result.Should().NotBeNull();
-        result.Should().HaveCount(1);
-        result[0].City.Should().Be(city);
+        Assert.NotNull(result);
+        Assert.Single(result);
+        Assert.Equal(city, result[0].City);
         // Repository should NOT be called due to caching
         _repositoryMock.Verify(r => r.GetWeatherAsync(
             It.IsAny<string>(),

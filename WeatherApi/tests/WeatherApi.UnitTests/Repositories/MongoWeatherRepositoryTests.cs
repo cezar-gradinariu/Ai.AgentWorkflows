@@ -1,4 +1,3 @@
-using FluentAssertions;
 using MongoDB.Driver;
 using Moq;
 using WeatherApi.Domain.Entities;
@@ -42,8 +41,6 @@ public class MongoWeatherRepositoryTests
         // 2. If existing data and new data is newer (LastUpdated) -> UPDATE
         // 3. If existing data and new data is older or same age -> IGNORE
         
-        var expected = true;
-        expected.Should().BeTrue("Upsert logic is implemented in the repository");
+        Assert.True(true, "Upsert logic is implemented in the repository");
     }
 }
-

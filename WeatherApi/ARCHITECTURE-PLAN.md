@@ -42,7 +42,7 @@ This document outlines the architecture and implementation plan for the Weather 
 - Swagger/OpenAPI documentation
 
 ### Testing
-- **Unit Tests**: xUnit for services, validators, and business logic
+- **Unit Tests**: xUnit for services, validators, and business logic (using standard xUnit assertions)
 - **Integration Tests**: BDD scenarios in `.feature` files (Reqnroll), TestContainers for MongoDB
 
 ---
@@ -117,7 +117,8 @@ This document outlines the architecture and implementation plan for the Weather 
 - MongoDB.Driver
 - IMemoryCache
 - FluentValidation
-- xUnit
+- xUnit (with standard assertions)
+- Moq (for mocking)
 - Reqnroll
 - TestContainers
 - Swashbuckle (Swagger)

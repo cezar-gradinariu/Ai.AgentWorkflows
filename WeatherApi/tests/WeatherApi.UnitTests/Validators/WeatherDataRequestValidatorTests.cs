@@ -1,4 +1,3 @@
-using FluentAssertions;
 using WeatherApi.Application.DTOs;
 using WeatherApi.Application.Validators;
 using Xunit;
@@ -35,8 +34,8 @@ public class WeatherDataRequestValidatorTests
         var result = await _validator.ValidateAsync(request);
 
         // Assert
-        result.IsValid.Should().BeTrue();
-        result.Errors.Should().BeEmpty();
+        Assert.True(result.IsValid);
+        Assert.Empty(result.Errors);
     }
 
     [Theory]
@@ -58,8 +57,8 @@ public class WeatherDataRequestValidatorTests
         var result = await _validator.ValidateAsync(request);
 
         // Assert
-        result.IsValid.Should().BeFalse();
-        result.Errors.Should().Contain(e => e.PropertyName == "City");
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, e => e.PropertyName == "City");
     }
 
     [Fact]
@@ -80,8 +79,8 @@ public class WeatherDataRequestValidatorTests
         var result = await _validator.ValidateAsync(request);
 
         // Assert
-        result.IsValid.Should().BeFalse();
-        result.Errors.Should().Contain(e => e.PropertyName == "City");
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, e => e.PropertyName == "City");
     }
 
     [Fact]
@@ -102,8 +101,8 @@ public class WeatherDataRequestValidatorTests
         var result = await _validator.ValidateAsync(request);
 
         // Assert
-        result.IsValid.Should().BeFalse();
-        result.Errors.Should().Contain(e => e.PropertyName == "City" && 
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, e => e.PropertyName == "City" && 
             e.ErrorMessage.Contains("100 characters"));
     }
 
@@ -127,8 +126,8 @@ public class WeatherDataRequestValidatorTests
         var result = await _validator.ValidateAsync(request);
 
         // Assert
-        result.IsValid.Should().BeFalse();
-        result.Errors.Should().Contain(e => e.PropertyName == "Temperature");
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, e => e.PropertyName == "Temperature");
     }
 
     [Theory]
@@ -151,8 +150,8 @@ public class WeatherDataRequestValidatorTests
         var result = await _validator.ValidateAsync(request);
 
         // Assert
-        result.IsValid.Should().BeFalse();
-        result.Errors.Should().Contain(e => e.PropertyName == "Humidity");
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, e => e.PropertyName == "Humidity");
     }
 
     [Fact]
@@ -173,8 +172,8 @@ public class WeatherDataRequestValidatorTests
         var result = await _validator.ValidateAsync(request);
 
         // Assert
-        result.IsValid.Should().BeFalse();
-        result.Errors.Should().Contain(e => e.PropertyName == "WindSpeed");
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, e => e.PropertyName == "WindSpeed");
     }
 
     [Fact]
@@ -195,8 +194,8 @@ public class WeatherDataRequestValidatorTests
         var result = await _validator.ValidateAsync(request);
 
         // Assert
-        result.IsValid.Should().BeFalse();
-        result.Errors.Should().Contain(e => e.PropertyName == "Condition" && 
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, e => e.PropertyName == "Condition" && 
             e.ErrorMessage.Contains("200 characters"));
     }
 }
